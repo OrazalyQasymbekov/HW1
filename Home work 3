@@ -1,1 +1,70 @@
+import java.util.Arrays;
+
+public class Main {
+
+    // Метод 1: Печатает строку указанное количество раз
+    public static void printStringNTimes(int n, String str) {
+        for (int i = 0; i < n; i++) {
+            System.out.println(str);
+        }
+    }
+
+    // Метод 2: Суммирует элементы массива больше 5
+    public static void sumGreaterThanFive(int[] arr) {
+        int sum = 0;
+        for (int num : arr) {
+            if (num > 5) {
+                sum += num;
+            }
+        }
+        System.out.println("Сумма элементов больше 5: " + sum);
+    }
+
+    // Метод 3: Заполняет массив указанным числом
+    public static void fillArrayWithNumber(int number, int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = number;
+        }
+    }
+
+    // Метод 4: Увеличивает каждый элемент массива на указанное число
+    public static void incrementArray(int incrementValue, int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] += incrementValue;
+        }
+    }
+
+    // Метод 5: Печатает сумму элементов массива, начиная с середины
+    public static void sumFromMiddle(int[] arr) {
+        int mid = arr.length / 2;
+        int sum = 0;
+        for (int i = mid; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        System.out.println("Сумма второй половины массива: " + sum);
+    }
+
+    public static void main(String[] args) {
+        // Вызов метода 1: Печатает строку 5 раз
+        printStringNTimes(5, "Hello, Java!");
+
+        // Вызов метода 2: Суммирует элементы массива больше 5
+        int[] array1 = {1, 6, 7, 3, 10, 2};
+        sumGreaterThanFive(array1);
+
+        // Вызов метода 3: Заполняет массив числом 7
+        int[] array2 = new int[5];
+        fillArrayWithNumber(7, array2);
+        System.out.println("Массив после заполнения: " + Arrays.toString(array2));
+
+        // Вызов метода 4: Увеличивает каждый элемент массива на 2
+        int[] array3 = {1, 2, 3, 4, 5};
+        incrementArray(2, array3);
+        System.out.println("Массив после увеличения: " + Arrays.toString(array3));
+
+        // Вызов метода 5: Сумма второй половины массива
+        int[] array4 = {1, 2, 3, 4, 5, 6};
+        sumFromMiddle(array4);
+    }
+}
 
