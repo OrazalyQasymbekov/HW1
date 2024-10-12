@@ -1,0 +1,155 @@
+//Class user
+/*
+class User {
+    private String lastName;
+    private String firstName;
+    private String middleName;
+    private int birthYear;
+    private String email;
+
+    // Конструктор
+    public User(String lastName, String firstName, String middleName, int birthYear, String email) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.birthYear = birthYear;
+        this.email = email;
+    }
+
+    // Метод для вывода информации о пользователе
+    public void displayInfo() {
+        System.out.println("ФИО: " + lastName + " " + firstName + " " + middleName);
+        System.out.println("Год рождения: " + birthYear);
+        System.out.println("e-mail: " + email);
+        System.out.println();
+    }
+
+    // Метод для получения года рождения
+    public int getBirthYear() {
+        return birthYear;
+    }
+}
+*/
+//class Main
+class User {
+    private String lastName;
+    private String firstName;
+    private String middleName;
+    private int birthYear;
+    private String email;
+
+    // Конструктор
+    public User(String lastName, String firstName, String middleName, int birthYear, String email) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.birthYear = birthYear;
+        this.email = email;
+    }
+
+    // Метод для вывода информации о пользователе
+    public void displayInfo() {
+        System.out.println("ФИО: " + lastName + " " + firstName + " " + middleName);
+        System.out.println("Год рождения: " + birthYear);
+        System.out.println("e-mail: " + email);
+        System.out.println();
+    }
+
+    // Метод для получения года рождения
+    public int getBirthYear() {
+        return birthYear;
+    }
+}
+//task2
+//box
+class Box {
+    private final double size; // Размер коробки
+    private String color; // Цвет коробки
+    private boolean isOpen; // Открыта ли коробка
+    private String item; // Предмет в коробке
+
+    // Конструктор
+    public Box(double size, String color) {
+        this.size = size;
+        this.color = color;
+        this.isOpen = false;
+        this.item = null;
+    }
+
+    // Метод для открытия коробки
+    public void open() {
+        isOpen = true;
+        System.out.println("Коробка открыта.");
+    }
+
+    // Метод для закрытия коробки
+    public void close() {
+        isOpen = false;
+        System.out.println("Коробка закрыта.");
+    }
+
+    // Метод для перекрашивания коробки
+    public void repaint(String newColor) {
+        this.color = newColor;
+        System.out.println("Коробка перекрашена в " + newColor);
+    }
+
+    // Метод для добавления предмета в коробку
+    public void putItem(String item) {
+        if (isOpen) {
+            if (this.item == null) {
+                this.item = item;
+                System.out.println("Предмет '" + item + "' добавлен в коробку.");
+            } else {
+                System.out.println("Коробка уже содержит предмет '" + this.item + "'.");
+            }
+        } else {
+            System.out.println("Коробка закрыта. Откройте коробку, чтобы добавить предмет.");
+        }
+    }
+
+    // Метод для удаления предмета из коробки
+    public void removeItem() {
+        if (isOpen) {
+            if (item != null) {
+                System.out.println("Предмет '" + item + "' удален из коробки.");
+                item = null;
+            } else {
+                System.out.println("В коробке нет предметов.");
+            }
+        } else {
+            System.out.println("Коробка закрыта. Откройте коробку, чтобы удалить предмет.");
+        }
+    }
+
+    // Метод для вывода информации о коробке
+    public void displayInfo() {
+        System.out.println("Коробка: размер = " + size + ", цвет = " + color + ", открыта = " + isOpen);
+        if (item != null) {
+            System.out.println("В коробке находится предмет: " + item);
+        } else {
+            System.out.println("В коробке нет предметов.");
+        }
+    }
+}
+// class Main
+public class Main {
+    public static void main(String[] args) {
+        // ... предыдущий код пользователей
+
+        // Создание и тестирование коробки
+        Box box = new Box(10.0, "красный");
+        box.displayInfo();
+
+        box.open();
+        box.putItem("книга");
+        box.removeItem();
+        box.close();
+        
+        box.repaint("синий");
+        box.open();
+        box.putItem("игрушка");
+        box.displayInfo();
+        box.close();
+    }
+}
