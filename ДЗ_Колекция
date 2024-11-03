@@ -1,0 +1,166 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        // Пример использования методов
+        // 1. Создание диапазона значений
+        List<Integer> range = createRange(1, 10);
+        System.out.println("Диапазон: " + range);
+
+        // 2. Суммирование значений больше 5
+        int sum = sumGreaterThanFive(range);
+        System.out.println("Сумма элементов больше 5: " + sum);
+
+        // 3. Заполнение списка заданным числом
+        fillList(range, 3);
+        System.out.println("Список после заполнения числом 3: " + range);
+
+        // 4. Увеличение каждого элемента списка на 2
+        incrementList(range, 2);
+        System.out.println("Список после увеличения на 2: " + range);
+
+        // Работа со списком сотрудников
+        List<Employee> employees = Arrays.asList(
+            new Employee("Алексей", 25),
+            new Employee("Мария", 30),
+            new Employee("Иван", 22),
+            new Employee("Ольга", 28)
+        );
+
+        // 5. Получение списка имён сотрудников
+        List<String> names = getEmployeeNames(employees);
+        System.out.println("Имена сотрудников: " + names);
+
+        // 6. Фильтрация сотрудников по минимальному возрасту
+        List<Employee> filteredEmployees = filterByMinAge(employees, 25);
+        System.out.println("Сотрудники старше 25 лет: ");
+        for (Employee emp : filteredEmployees) {
+            System.out.println(emp.getName() + ", возраст: " + emp.getAge());
+        }
+
+        // 7. Проверка наличия сотрудника с определённым возрастом
+        boolean hasAge = containsAge(employees, 30);
+        System.out.println("Есть ли сотрудник с возрастом 30? " + hasAge);
+
+        // 8. Проверка наличия сотрудников с минимальным и максимальным возрастом
+        boolean hasMinAndMaxAge = hasMinAndMaxAge(employees, 22, 30);
+        System.out.println("Есть ли сотрудники с возрастом 22 и 30? " + hasMinAndMaxAge);
+
+        // 9. Получение самого молодого сотрудника
+        Employee youngest = getYoungestEmployee(employees);
+        System.out.println("Самый молодой сотрудник: " + (youngest != null ? youngest.getName() : "Нет сотрудников"));
+    }
+
+    // Метод 1: Создание диапазона значений
+    public static List<Integer> createRange(int min, int max) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = min; i <= max; i++) {
+            list.add(i);
+        }
+        return list;
+    }
+
+    // Метод 2: Суммирование значений больше 5
+    public static int sumGreaterThanFive(List<Integer> list) {
+        int sum = 0;
+        for (int num : list) {
+            if (num > 5) {
+                sum += num;
+            }
+        }
+        return sum;
+    }
+
+    // Метод 3: Заполнение списка заданным числом
+    public static void fillList(List<Integer> list, int value) {
+        for (int i = 0; i < list.size(); i++) {
+            list.set(i, value);
+        }
+    }
+
+    // Метод 4: Увеличение каждого элемента списка на указанное число
+    public static void incrementList(List<Integer> list, int increment) {
+        for (int i = 0; i < list.size(); i++) {
+            list.set(i, list.get(i) + increment);
+        }
+    }
+
+    // Метод 5: Получение списка имён сотрудников
+    public static List<String> getEmployeeNames(List<Employee> employees) {
+        List<String> names = new ArrayList<>();
+        for (Employee employee : employees) {
+            names.add(employee.getName());
+        }
+        return names;
+    }
+
+    // Метод 6: Фильтрация сотрудников по минимальному возрасту
+    public static List<Employee> filterByMinAge(List<Employee> employees, int minAge) {
+        List<Employee> filteredList = new ArrayList<>();
+        for (Employee employee : employees) {
+            if (employee.getAge() >= minAge) {
+                filteredList.add(employee);
+            }
+        }
+        return filteredList;
+    }
+
+    // Метод 7: Проверка наличия сотрудника с определённым возрастом
+    public static boolean containsAge(List<Employee> employees, int age) {
+        for (Employee employee : employees) {
+            if (employee.getAge() == age) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Метод 8: Проверка наличия сотрудников с минимальным и максимальным возрастом
+    public static boolean hasMinAndMaxAge(List<Employee> employees, int minAge, int maxAge) {
+        boolean hasMin = false;
+        boolean hasMax = false;
+        for (Employee employee : employees) {
+            if (employee.getAge() == minAge) {
+                hasMin = true;
+            }
+            if (employee.getAge() == maxAge) {
+                hasMax = true;
+            }
+        }
+        return hasMin && hasMax;
+    }
+
+    // Метод 9: Получение самого молодого сотрудника
+    public static Employee getYoungestEmployee(List<Employee> employees) {
+        if (employees.isEmpty()) return null;
+        
+        Employee youngest = employees.get(0);
+        for (Employee employee : employees) {
+            if (employee.getAge() < youngest.getAge()) {
+                youngest = employee;
+            }
+        }
+        return youngest;
+    }
+}
+
+// Класс Employee с полями имя и возраст
+class Employee {
+    private String name;
+    private int age;
+
+    public Employee(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
