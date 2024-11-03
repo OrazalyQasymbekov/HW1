@@ -1,0 +1,54 @@
+import java.util.*;
+
+public class PhoneBook {
+    // Map для хранения имен и связанных с ними телефонных номеров
+    private Map<String, Set<String>> phoneBook;
+
+    // Конструктор
+    public PhoneBook() {
+        phoneBook = new HashMap<>();
+    }
+
+    // Метод для добавления записи (имя и телефонный номер)
+    public void add(String name, String phoneNumber) {
+        // Если имени еще нет в справочнике, создаем новый Set для номеров
+        phoneBook.putIfAbsent(name, new HashSet<>());
+        // Добавляем номер в соответствующее имя
+        phoneBook.get(name).add(phoneNumber);
+    }
+
+    // Метод для поиска телефонных номеров по имени
+    public Set<String> find(String name) {
+        // Возвращаем Set с номерами по имени, либо пустой Set, если имя не найдено
+        return phoneBook.getOrDefault(name, Collections.emptySet());
+    }
+
+    // Метод для проверки наличия телефона в справочнике
+    public boolean containsPhoneNumber(String phoneNumber) {
+        // Ищем по всем наборам номеров, проверяем, есть ли нужный номер
+        for (Set<String> numbers : phoneBook.values()) {
+            if (numbers.contains(phoneNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        PhoneBook phoneBook = new PhoneBook();
+
+        // Добавляем записи
+        phoneBook.add("Иван Иванов", "+79001234567");
+        phoneBook.add("Мария Петрова", "+79007654321");
+        phoneBook.add("Иван Иванов", "+79009876543"); // Добавляем еще один номер для Ивана Иванова
+
+        // Поиск номеров по имени
+        System.out.println("Номера для Ивана Иванова: " + phoneBook.find("Иван Иванов"));
+        System.out.println("Номера для Марии Петровой: " + phoneBook.find("Мария Петрова"));
+        System.out.println("Номера для Петра Петрова: " + phoneBook.find("Петр Петров")); // Пустой результат
+
+        // Проверка наличия номера в справочнике
+        System.out.println("Содержит ли справочник номер +79001234567? " + phoneBook.containsPhoneNumber("+79001234567"));
+        System.out.println("Содержит ли справочник номер +12345678900? " + phoneBook.containsPhoneNumber("+12345678900"));
+    }
+}
