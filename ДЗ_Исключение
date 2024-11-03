@@ -1,0 +1,55 @@
+public class Main {
+    public static void main(String[] args) {
+        // Пример массива для тестирования
+        String[][] array = {
+            {"1", "2", "3", "4"},
+            {"5", "6", "7", "8"},
+            {"9", "10", "11", "12"},
+            {"13", "14", "15", "16"}
+        };
+
+        try {
+            int result = sumArray(array);
+            System.out.println("Сумма элементов массива: " + result);
+        } catch (AppArraySizeException | AppArrayDataException e) {
+            System.out.println("Ошибка: " + e.getMessage());
+        }
+    }
+
+    // Метод, который проверяет размер массива, суммирует его элементы и обрабатывает ошибки
+    public static int sumArray(String[][] array) throws AppArraySizeException, AppArrayDataException {
+        // Проверка на соответствие размера массива 4x4
+        if (array.length != 4 || array[0].length != 4) {
+            throw new AppArraySizeException("Массив должен быть размером 4x4.");
+        }
+
+        int sum = 0; // Переменная для хранения суммы элементов массива
+
+        // Обход каждого элемента массива
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                try {
+                    sum += Integer.parseInt(array[i][j]);
+                } catch (NumberFormatException e) {
+                    throw new AppArrayDataException("Ошибка в данных массива в ячейке [" + i + "][" + j + "]");
+                }
+            }
+        }
+
+        return sum; // Возвращаем сумму элементов массива
+    }
+}
+
+// Кастомное исключение для проверки размера массива
+class AppArraySizeException extends Exception {
+    public AppArraySizeException(String message) {
+        super(message);
+    }
+}
+
+// Кастомное исключение для неверных данных в массиве
+class AppArrayDataException extends Exception {
+    public AppArrayDataException(String message) {
+        super(message);
+    }
+}
